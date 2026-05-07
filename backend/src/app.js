@@ -1,9 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import healthRoutes from './routes/healthRoutes.js';
-
-dotenv.config();
 
 const app = express();
 
@@ -14,9 +11,11 @@ app.use(express.json());
 // Routes
 app.use('/api', healthRoutes);
 
-// Base route
+// Health Check Route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.status(200).json({
+    message: 'API running successfully'
+  });
 });
 
 export default app;
