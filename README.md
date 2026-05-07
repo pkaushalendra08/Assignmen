@@ -31,6 +31,26 @@ A professional, full-stack MERN application that scrapes top stories from Hacker
 
 ---
 
+## 📡 API Endpoints
+
+### **Authentication**
+- `POST /api/auth/register` - Create a new user account.
+- `POST /api/auth/login` - Authenticate user and receive JWT.
+
+### **Stories**
+- `GET /api/stories` - Fetch all stories (supports `page` & `limit` params).
+- `GET /api/stories/:id` - Fetch a single story by ID.
+- `GET /api/stories/bookmarks` - Fetch bookmarked stories for the current user (Protected).
+- `POST /api/stories/:id/bookmark` - Toggle bookmark status for a story (Protected).
+
+### **Scraping**
+- `POST /api/scrape` - Trigger a manual scrape of Hacker News.
+
+### **System**
+- `GET /api/health` - Check backend server status.
+
+---
+
 ## ⚙️ Environment Variables
 
 Create a `.env` file in the `backend/` directory and add the following:
@@ -64,7 +84,6 @@ cd backend
 npm install
 npm start
 ```
-*The server will start on port 5000 and perform an initial scrape of Hacker News.*
 
 ### **3. Setup Frontend**
 ```bash
@@ -72,7 +91,6 @@ cd ../frontend
 npm install
 npm run dev
 ```
-*The frontend will be available at `http://localhost:5173`.*
 
 ---
 
@@ -110,7 +128,3 @@ npm run dev
 - [x] **Responsive UI**: High-end light mode design optimized for all devices.
 - [x] **State Management**: Real-time sync between Home and Bookmarks pages.
 - [x] **Code Quality**: Clean, scalable structure with NO hardcoded secrets or unused code.
-
----
-
-
