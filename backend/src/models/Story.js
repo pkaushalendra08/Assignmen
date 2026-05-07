@@ -11,11 +11,14 @@ const storySchema = new mongoose.Schema(
     url: {
       type: String,
       required: [true, 'URL is required'],
+      unique: true,
       trim: true,
+      index: true,
     },
     points: {
       type: Number,
       default: 0,
+      index: -1,
     },
     author: {
       type: String,

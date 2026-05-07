@@ -10,7 +10,11 @@ export const scrapeHackerNews = async () => {
     $('.athing').slice(0, 10).each((i, element) => {
       const titleLine = $(element).find('.titleline > a');
       const title = titleLine.text();
-      const url = titleLine.attr('href');
+      let url = titleLine.attr('href');
+
+      if (url && !url.startsWith('http')) {
+        url = `https://news.ycombinator.com/${url}`;
+      }
 
       const subtext = $(element).next();
       const points = subtext.find('.score').text().split(' ')[0] || '0';
