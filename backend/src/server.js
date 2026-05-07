@@ -4,6 +4,14 @@ import connectDB from './config/db.js';
 import { syncStories } from './controllers/scrapeController.js';
 
 const startServer = async () => {
+  const requiredEnv = ['MONGO_URI', 'JWT_SECRET'];
+  const missingEnv = requiredEnv.filter((env) => !process.env[env]);
+
+  if (missingEnv.length > 0) {
+    console.error(`[Server] Missing environment variables: ${missingEnv.join(', ')}`);
+    process.exit(1);
+  }
+
   try {
     await connectDB();
 
