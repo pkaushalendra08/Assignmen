@@ -2,6 +2,7 @@ import 'dotenv/config';
 import app from './app.js';
 import connectDB from './config/db.js';
 
+
 const startServer = async () => {
   try {
     // Ensure database connects before server starts
@@ -17,5 +18,6 @@ const startServer = async () => {
     process.exit(1);
   }
 };
+
 
 startServer();

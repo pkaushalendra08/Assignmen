@@ -1,0 +1,40 @@
+import mongoose from 'mongoose';
+
+const storySchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, 'Title is required'],
+      trim: true,
+      index: true,
+    },
+    url: {
+      type: String,
+      required: [true, 'URL is required'],
+      trim: true,
+    },
+    points: {
+      type: Number,
+      default: 0,
+    },
+    author: {
+      type: String,
+      default: 'Unknown',
+      trim: true,
+    },
+    postedAt: {
+      type: String,
+      trim: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+// Add index for faster queries on title and author
+storySchema.index({ title: 'text', author: 1 });
+
+const Story = mongoose.model('Story', storySchema);
+
+export default Story;
