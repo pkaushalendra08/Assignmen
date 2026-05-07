@@ -2,14 +2,10 @@ import 'dotenv/config';
 import app from './app.js';
 import connectDB from './config/db.js';
 
-
 const startServer = async () => {
   try {
-    // Ensure database connects before server starts
     await connectDB();
-
     const PORT = process.env.PORT || 5000;
-
     app.listen(PORT, () => {
       console.log(`[Server] running on port ${PORT}`);
     });
@@ -18,6 +14,5 @@ const startServer = async () => {
     process.exit(1);
   }
 };
-
 
 startServer();

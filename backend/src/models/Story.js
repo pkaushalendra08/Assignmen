@@ -32,9 +32,7 @@ const storySchema = new mongoose.Schema(
   }
 );
 
-// Add index for faster queries on title and author
 storySchema.index({ title: 'text', author: 1 });
 
 const Story = mongoose.model('Story', storySchema);
-
 export default Story;
