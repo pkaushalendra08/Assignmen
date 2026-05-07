@@ -1,7 +1,7 @@
 import Story from '../models/Story.js';
 import { scrapeHackerNews } from '../services/scraperService.js';
 
-export const triggerScrape = async (req, res) => {
+export const syncStories = async () => {
   try {
     const scrapedData = await scrapeHackerNews();
     const savedStories = [];
@@ -14,7 +14,16 @@ export const triggerScrape = async (req, res) => {
       );
       savedStories.push(updatedStory);
     }
+    return savedStories;
+  } catch (error) {
+    console.error(`[Scraper] Sync failed: ${error.message}`);
+    return [];
+  }
+};
 
+export const triggerScrape = async (req, res) => {
+  try {
+    const savedStories = await syncStories();
     res.status(200).json({
       success: true,
       count: savedStories.length,
